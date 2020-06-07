@@ -7,6 +7,18 @@
 <link rel="stylesheet" href="../styles.css">
 <title>Phone Cleaner</title>
 <script>
+function cleanPhone(phone){
+  const rePhone = RegExp(phone.pattern);
+  const phoneNum = phone.value;
+  const cleanedPhone = phoneNum.replace(rePhone, "($1) $2-$3");
+  if (rePhone.test(phoneNum)) {
+    return cleanedPhone;
+  } else {
+    alert("INVALID PHONE");
+    return phoneNum;
+  }
+}
+
 window.addEventListener('load', function(e) {
   const btn = document.getElementById('clean');
   const phone = document.getElementById('phone');
@@ -19,7 +31,8 @@ window.addEventListener('load', function(e) {
 </head>
 <body>
   <form>
-    <input type="tel" id="phone" name="phone" size="20">
+    <input type="tel" id="phone" name="phone" size="20"
+    pattern="^\(?(\d{3})\)?[\-\. ]?(\d{3})[\-\. ]?(\d{4})$">
     <button id="clean">Clean Phone</button>
   </form>
 </body>
